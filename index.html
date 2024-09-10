@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحتي التعليمية</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1 1 30%;
+        }
+        .box img, .box video {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .box h2 {
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+        .box p {
+            line-height: 1.6;
+        }
+        .box a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>صفحتي التعليمية</h1>
+    </header>
+    <div class="container">
+        <div class="main-content">
+            <!-- قسم المقالات -->
+            <div class="box">
+                <h2>مقال تعليمي 1</h2>
+                <p>هذا هو المقال التعليمي الأول. يمكنك إضافة نصوص هنا حول موضوعات تعليمية مختلفة.</p>
+                <a href="#">اقرأ المزيد</a>
+            </div>
+
+            <!-- قسم الصور -->
+            <div class="box">
+                <h2>صورة تعليمية</h2>
+                <img src="path/to/your/image.jpg" alt="صورة تعليمية">
+                <a href="path/to/your/image.jpg" download>تحميل الصورة</a>
+            </div>
+
+            <!-- قسم الفيديوهات -->
+            <div class="box">
+                <h2>فيديو تعليمي</h2>
+                <video controls>
+                    <source src="path/to/your/video.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+                <a href="path/to/your/video.mp4" download>تحميل الفيديو</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 صفحتي التعليمية. جميع الحقوق محفوظة.</p>
+    </footer>
+</body>
+</html>
