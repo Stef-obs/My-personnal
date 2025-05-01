@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz ديني</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #444;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body id="body">
+  <div class="quiz-container">
+    <h1>Quiz ديني</h1>
+    <div id="quiz-content">
+      <!-- سيتم ملء المحتوى ديناميكيًا -->
+    </div>
+    <button id="next-button" onclick="nextQuestion()">التالي</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    // الأسئلة والأجوبة
+    const questions = [
+      {
+        question: "كم عدد أركان الإسلام؟",
+        options: ["4", "5", "6"],
+        answer: "5",
+        background: "https://example.com/image1.jpg"
+      },
+      {
+        question: "ما هو أول مسجد بني في الإسلام؟",
+        options: ["المسجد الحرام", "مسجد قباء", "المسجد النبوي"],
+        answer: "مسجد قباء",
+        background: "https://example.com/image2.jpg"
+      },
+      {
+        question: "كم عدد سور القرآن الكريم؟",
+        options: ["114", "113", "112"],
+        answer: "114",
+        background: "https://example.com/image3.jpg"
+      },
+      {
+        question: "ما هي السورة التي تعدل ثلث القرآن؟",
+        options: ["سورة الإخلاص", "سورة الفاتحة", "سورة الكوثر"],
+        answer: "سورة الإخلاص",
+        background: "https://example.com/image4.jpg"
+      },
+      {
+        question: "من هو خاتم الأنبياء؟",
+        options: ["النبي محمد", "النبي عيسى", "النبي موسى"],
+        answer: "النبي محمد",
+        background: "https://example.com/image5.jpg"
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    // عرض السؤال الحالي
+    function showQuestion() {
+      const quizContent = document.getElementById("quiz-content");
+      const body = document.getElementById("body");
+
+      // تغيير الخلفية
+      body.style.backgroundImage = `url(${questions[currentQuestion].background})`;
+
+      // عرض السؤال والخيارات
+      const questionData = questions[currentQuestion];
+      quizContent.innerHTML = `
+        <div class="question">
+          <p>${currentQuestion + 1}. ${questionData.question}</p>
+        </div>
+        <div class="options">
+          ${questionData.options
+            .map(
+              (option, index) =>
+                `<label><input type="radio" name="answer" value="${option}"> ${option}</label>`
+            )
+            .join("")}
+        </div>
+      `;
+    }
+
+    // الانتقال للسؤال التالي
+    function nextQuestion() {
+      const selectedOption = document.querySelector(
+        'input[name="answer"]:checked'
+      );
+
+      if (!selectedOption) {
+        alert("يرجى اختيار إجابة قبل المتابعة.");
+        return;
+      }
+
+      // التحقق من الإجابة
+      if (selectedOption.value === questions[currentQuestion].answer) {
+        score++;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    // عرض النتيجة النهائية
+    function showResult() {
+      const quizContent = document.getElementById("quiz-content");
+      const nextButton = document.getElementById("next-button");
+      const resultDiv = document.getElementById("result");
+
+      quizContent.innerHTML = "";
+      nextButton.style.display = "none";
+      resultDiv.textContent = `لقد أجبت بشكل صحيح على ${score} من أصل ${questions.length} أسئلة.`;
+    }
+
+    // عرض السؤال الأول عند تحميل الصفحة
+    showQuestion();
+  </script>
+</body>
+</html>
